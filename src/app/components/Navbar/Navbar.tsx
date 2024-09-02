@@ -1,16 +1,13 @@
-import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { FC } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar: FC = () => {
   return (
-    <nav>
-        <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/contacts">Contacts</Link></li>
-        </ul>
+    <nav id="app-navbar" className="app-navbar">
+      <Link to="/addpost">Add Post</Link> | <Link to="/myposts">My Posts</Link>{" "}
+      |<Link to="/chats">Chats</Link>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
