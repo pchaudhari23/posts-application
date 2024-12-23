@@ -86,7 +86,7 @@ export default function SideDrawer(props: any) {
     <Drawer
       id="app-drawer"
       className="app-drawer"
-      // variant="persistent"
+      variant="persistent"
       anchor="left"
       open={showSideDrawer}
       onClose={toggleDrawer(false)}

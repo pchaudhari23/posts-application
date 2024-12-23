@@ -1,18 +1,18 @@
-import { combineReducers } from '@reduxjs/toolkit';
-import postsReducer from '../slices/postsSlice';
-import commentsReducer from '../slices/commentsSlice';
-import usersReducer from '../slices/usersSlice';
+import { combineReducers } from "@reduxjs/toolkit";
+import postsReducer from "../slices/postsSlice";
+import commentsReducer from "../slices/commentsSlice";
+import usersReducer from "../slices/usersSlice";
 
 const reducerSlices = {
   posts: postsReducer,
   comments: commentsReducer,
-  users:usersReducer
-}
+  users: usersReducer,
+};
 
 export let rootReducer = combineReducers({ ...reducerSlices });
 export type RootState = ReturnType<typeof rootReducer>;
 
 export default function createReducer() {
-  const rootReducer = combineReducers({ ...reducerSlices }); 
+  const rootReducer = combineReducers({ ...reducerSlices });
   return rootReducer;
 }

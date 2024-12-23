@@ -1,3 +1,8 @@
 .app-body {
   flex: 1;
 }
+
+.page-body {
+  display: flex;
+  flex-grow: 1;
+}

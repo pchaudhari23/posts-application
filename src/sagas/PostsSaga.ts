@@ -1,4 +1,5 @@
 import { call, put, takeEvery } from "redux-saga/effects";
+import { SagaIterator } from "redux-saga";
 import {
   fetchPostsAction,
   fetchPostsSuccess,
@@ -11,19 +12,17 @@ import {
   updatePostSuccess,
   deletePostAction,
   deletePostFailure,
-  deletePostSuccess
+  deletePostSuccess,
 } from "../slices/postsSlice";
 
-import { 
+import {
   fetchPostsAPI,
   createPostAPI,
   deletePostAPI,
-  updatePostAPI
-} from "../network/api/api";
+  updatePostAPI,
+} from "../network/api/postsapi";
 
-import { PostType } from "../types";
-
-import { SagaIterator } from "redux-saga";
+import { PostType } from "../types/Post";
 
 //Worker
 function* getPostsSaga(): SagaIterator {
@@ -35,14 +34,14 @@ function* getPostsSaga(): SagaIterator {
       yield put(fetchPostsFailure());
     }
   } catch (ex) {
-    console.log('error: ', ex);
+    console.log("error: ", ex);
     yield put(fetchPostsFailure());
   }
 }
 
-function* createPostSaga(action : {
-  type: String, 
-  payload: PostType
+function* createPostSaga(action: {
+  type: String;
+  payload: PostType;
 }): SagaIterator {
   try {
     const response = yield call(createPostAPI, action.payload);
@@ -52,14 +51,14 @@ function* createPostSaga(action : {
       yield put(createPostFailure());
     }
   } catch (ex) {
-    console.log('error: ', ex);
+    console.log("error: ", ex);
     yield put(createPostFailure());
   }
 }
 
-function* updatePostSaga(action : {
-  type: String, 
-  payload: PostType
+function* updatePostSaga(action: {
+  type: String;
+  payload: PostType;
 }): SagaIterator {
   try {
     const response = yield call(updatePostAPI, action.payload);
@@ -69,16 +68,16 @@ function* updatePostSaga(action : {
       yield put(updatePostFailure());
     }
   } catch (ex) {
-    console.log('error: ', ex);
+    console.log("error: ", ex);
     yield put(updatePostFailure());
   }
 }
 
-function* deletePostSaga(action : {
-  type: String, 
+function* deletePostSaga(action: {
+  type: String;
   payload: {
-    id: String
-  }
+    id: String;
+  };
 }): SagaIterator {
   try {
     const response = yield call(deletePostAPI, action.payload.id);
@@ -88,7 +87,7 @@ function* deletePostSaga(action : {
       yield put(deletePostFailure());
     }
   } catch (ex) {
-    console.log('error: ', ex);
+    console.log("error: ", ex);
     yield put(deletePostFailure());
   }
 }

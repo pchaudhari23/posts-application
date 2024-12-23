@@ -1,22 +1,31 @@
 import { FC, useEffect, useState } from "react";
 import AppPage from "../../../components/AppPage/AppPage";
-import { fetchPostsAPI } from "../../../../network/api/api";
-import { PostType } from "../../../../types";
+import { fetchPostsAPI } from "../../../../network/api/postsapi";
+import { PostType } from "../../../../types/Post";
 import Post from "../Post/Post";
+import { useDispatch } from "react-redux";
+import { fetchPostsAction } from "../../../../slices/postsSlice";
+import { fetchCommentForPostAction } from "../../../../slices/commentsSlice";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import { useNavigate } from "react-router-dom";
 
 const PostsList: FC = () => {
   const [posts, setPosts] = useState<PostType[]>([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const getPosts = async () => {
     const response = await fetchPostsAPI();
     if (response && response.data) {
-      setPosts([...posts, response.data[0]]);
+      setPosts([...posts, response.data.posts[0]]);
     }
-    // console.log(posts)
+    console.log(response);
   };
 
   useEffect(() => {
-    getPosts();
+    // getPosts();
+    let postId = 12;
+    dispatch(fetchCommentForPostAction(postId));
   }, []);
 
   return (
@@ -28,6 +37,11 @@ const PostsList: FC = () => {
         {posts.map((post) => (
           <Post key={post.id} post={post} />
         ))}
+        <RemoveRedEyeIcon
+          onClick={() => {
+            navigate(`/posts/${encodeURIComponent(18)}`);
+          }}
+        />
       </div>
     </AppPage>
   );
