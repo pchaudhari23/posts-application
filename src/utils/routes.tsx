@@ -21,6 +21,69 @@ const CommentsList = Loadable(
 );
 const NotFound = Loadable(lazy(() => import("../app/pages/NotFound")));
 const SignIn = Loadable(lazy(() => import("../app/pages/User/SignIn/SignIn")));
+const Friends = Loadable(
+  lazy(() =>
+    import("../app/pages/DummyPages").then((module) => ({
+      default: module.Friends,
+    }))
+  )
+);
+const Memories = Loadable(
+  lazy(() =>
+    import("../app/pages/DummyPages").then((module) => ({
+      default: module.Memories,
+    }))
+  )
+);
+const Interests = Loadable(
+  lazy(() =>
+    import("../app/pages/DummyPages").then((module) => ({
+      default: module.Interests,
+    }))
+  )
+);
+const Places = Loadable(
+  lazy(() =>
+    import("../app/pages/DummyPages").then((module) => ({
+      default: module.Places,
+    }))
+  )
+);
+const Events = Loadable(
+  lazy(() =>
+    import("../app/pages/DummyPages").then((module) => ({
+      default: module.Events,
+    }))
+  )
+);
+const Profile = Loadable(
+  lazy(() =>
+    import("../app/pages/DummyPages").then((module) => ({
+      default: module.Profile,
+    }))
+  )
+);
+const Help = Loadable(
+  lazy(() =>
+    import("../app/pages/DummyPages").then((module) => ({
+      default: module.Help,
+    }))
+  )
+);
+const Settings = Loadable(
+  lazy(() =>
+    import("../app/pages/DummyPages").then((module) => ({
+      default: module.Settings,
+    }))
+  )
+);
+const Logout = Loadable(
+  lazy(() =>
+    import("../app/pages/DummyPages").then((module) => ({
+      default: module.Logout,
+    }))
+  )
+);
 
 interface AppRoute {
   path: string;
@@ -34,6 +97,15 @@ const routes: AppRoute[] = [
   { path: "/comments", element: <ProtectedRoute element={<CommentsList />} /> },
   { path: "*", element: <NotFound /> },
   { path: "/signin", element: <SignIn /> },
+  { path: "/friends", element: <Friends /> },
+  { path: "/memories", element: <Memories /> },
+  { path: "/interests", element: <Interests /> },
+  { path: "/places", element: <Places /> },
+  { path: "/events", element: <Events /> },
+  { path: "/profile", element: <Profile /> },
+  { path: "/settings", element: <Settings /> },
+  { path: "/help", element: <Help /> },
+  { path: "/logout", element: <Logout /> },
 ];
 
 export default routes;
